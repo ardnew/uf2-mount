@@ -2,8 +2,10 @@
 
 This script configures automatic mounting of USB FAT volumes containing `INFO_UF2.TXT`:
 
-- It mounts each volume with read and write access for the `disk` group.
-- The name of the mount directory is the volume label.
+- Monitored with `udev`, triggers `systemd` service.
+- Shell script verifies UF2 signature, mounts device.
+- Mounts with read+write access for the `disk` group.
+- Uses volume label as name of mount point.
 - Mount points are created in `/mnt` by default.
 
 ## Installation
