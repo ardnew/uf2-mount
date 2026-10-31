@@ -1,5 +1,6 @@
 #!/bin/bash
 set -uo pipefail
+set -x
 export LC_ALL=C
 
 # Configuration
@@ -48,12 +49,12 @@ install_files() {
     cat >"$SERVICE_PATH" <<EOF || {
 [Unit]
 Description=Probe and mount UF2 volume at %I
-BindsTo=sys-%i.device
-After=sys-%i.device
+BindsTo=%i.device
+After=%i.device
 
 [Service]
 Type=oneshot
-ExecStart="$script" /sys/%I
+ExecStart="$script" /%I
 TimeoutStartSec=30
 EOF
         fail "Cannot write the service file: $SERVICE_PATH"
